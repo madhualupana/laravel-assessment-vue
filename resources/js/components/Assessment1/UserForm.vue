@@ -170,7 +170,7 @@ export default {
             const params = { username: form.value.username }
             if (isEdit.value) params.exclude_id = props.id
             
-            const response = await axios.get('/api/users/check-email', { params })
+            const response = await axios.get('/api/users/check-username', { params })
             usernameError.value = response.data.exists ? 'Username is already taken' : ''
           } catch (error) {
             usernameError.value = 'Error checking username'
