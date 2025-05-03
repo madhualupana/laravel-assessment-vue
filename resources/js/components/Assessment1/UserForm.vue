@@ -24,9 +24,10 @@
         </div>
 
         <div class="space-y-4">
-          <div>
-            <label for="lastname" class="block text-sm font-medium text-gray-700">Last Name *</label>
-            <input id="lastname" v-model="form.lastname" type="text" required class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+         <div>
+            <label for="email" class="block text-sm font-medium text-gray-700">Email *</label>
+            <input id="email" v-model="form.email" type="email" required class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+            <span v-if="emailError" class="text-red-500 text-sm">{{ emailError }}</span>
           </div>
 
           <div>
@@ -42,11 +43,12 @@
         </div>
 
         <div class="space-y-4">
-           <div>
-            <label for="email" class="block text-sm font-medium text-gray-700">Email *</label>
-            <input id="email" v-model="form.email" type="email" required class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-            <span v-if="emailError" class="text-red-500 text-sm">{{ emailError }}</span>
+
+         <div>
+            <label for="lastname" class="block text-sm font-medium text-gray-700">Last Name *</label>
+            <input id="lastname" v-model="form.lastname" type="text" required class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
           </div>
+           
 
           <div>
             <label for="password" class="block text-sm font-medium text-gray-700">

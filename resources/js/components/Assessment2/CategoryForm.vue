@@ -86,16 +86,22 @@ export default {
   },
   methods: {
     async fetchParentOptions() {
-      try {
-        const response = await axios.get('/api/categories')
-        this.parentOptions = response.data.map(category => ({
-          id: category.id,
-          full_path: this.getFullPath(category, response.data)
-        }))
-      } catch (error) {
-        console.error('Error fetching parent options:', error)
-      }
-    },
+  try {
+    const response = await axios.get('/api/categories')
+    const allCategories = response.data
+
+    this.parentOptions = allCategories
+      .filter(category => category.id !== Number(this.id)) // fix: compare number with number
+      .map(category => ({
+        id: category.id,
+        full_path: this.getFullPath(category, allCategories)
+      }))
+  } catch (error) {
+    console.error('Error fetching parent options:', error)
+  }
+},
+
+
     getFullPath(category, allCategories) {
       const path = []
       let current = category

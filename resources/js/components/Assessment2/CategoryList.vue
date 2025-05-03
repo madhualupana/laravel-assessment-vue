@@ -1,14 +1,15 @@
 <template>
   <div class="container mx-auto px-4 py-8">
-   
-
     <div class="bg-white shadow-md rounded-lg overflow-hidden">
       <table class="min-w-full divide-y divide-gray-200">
         <thead class="bg-gray-50">
           <tr>
             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name (Full Path)</th>
             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Parent ID</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created Date</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Updated Date</th>
             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
           </tr>
         </thead>
@@ -25,6 +26,15 @@
               }" class="px-2 py-1 rounded-full text-xs">
                 {{ category.status === 1 ? 'Enabled' : 'Disabled' }}
               </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              {{ category.parent_id || '-' }}
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              {{ formatDate(category.created_at) }}
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              {{ formatDate(category.updated_at) }}
             </td>
             <td class="px-6 py-4 whitespace-nowrap flex space-x-2">
               <router-link 
@@ -78,6 +88,11 @@ export default {
       }
       
       return path.join(' > ')
+    },
+    formatDate(dateString) {
+      if (!dateString) return '-'
+      const date = new Date(dateString)
+      return date.toLocaleString() // Format as local date and time
     },
     async deleteCategory(id) {
       if (confirm('Are you sure you want to delete this category?')) {

@@ -14,7 +14,7 @@ use Illuminate\Queue\SerializesModels;
 class UserSaved
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-
+    
     /**
      * Create a new event instance.
      */

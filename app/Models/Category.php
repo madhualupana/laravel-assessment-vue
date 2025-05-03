@@ -51,10 +51,10 @@ class Category extends Model
         })->filter()->values();
     }
 
+
     protected static function booted()
     {
         static::deleting(function ($category) {
-            // Move children to parent's parent when deleting
             $newParentId = $category->parent_id;
             $category->children()->update(['parent_id' => $newParentId]);
         });

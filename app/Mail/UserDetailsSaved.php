@@ -16,7 +16,7 @@ class UserDetailsSaved extends Mailable
     public function build()
     {
         return $this->subject('User Details Saved')
-                    ->view('emails.user_details_saved') // your blade file
+                    ->view('emails.user_details_saved')
                     ->with([
                         'user' => $this->user,
                         'details' => $this->user->details,
